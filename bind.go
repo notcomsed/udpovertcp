@@ -88,7 +88,7 @@ func main() {
 		remoteConn.Write(S_tcp_head)
 		remoteConn.Write(buffer[:n])
 		}
-		n,_, err = ipset.ReadFromUDP(buffer)
+		n,conn, err = ipset.ReadFromUDP(buffer)
 	}
 	fmt.Printf("connect closed\n")
 	for{
