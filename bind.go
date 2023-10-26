@@ -88,8 +88,16 @@ func main() {
 		remoteConn.Write(S_tcp_head)
 		remoteConn.Write(buffer[:n])
 		}
-		n,conn, err = ipset.ReadFromUDP(buffer)
+		n,_, err = ipset.ReadFromUDP(buffer)
 	}
 	fmt.Printf("connect closed\n")
+	for{
+		ipset, err = net.ListenUDP("udp", udpAddr)
+		if err == nil {
+			break
+		}
+		fmt.Println("Error: fail to Listen udp", ipset_bind)
+		time.Sleep(time.Second)
+	}
 	}
 }
